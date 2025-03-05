@@ -50,14 +50,27 @@ jobs:
     #     tags: user/app:latest
 
 
+    # - uses: actions/checkout@v3
+    #   name: Check out code
+
+    # - uses: mr-smithers-excellent/docker-build-push@v6
+    #   name: Build & push Docker image
+    #   with:
+    #     image: fearreece/demo-app
+    #     registry: docker.io
+    #     enableBuildKit: true
+    #     username: ${{ secrets.DOCKER_USERNAME }}
+    #     password: ${{ secrets.DOCKER_PASSWORD }}
+
     - uses: actions/checkout@v3
       name: Check out code
-
+    
     - uses: mr-smithers-excellent/docker-build-push@v6
       name: Build & push Docker image
       with:
         image: fearreece/demo-app
+        tags: v1, latest
         registry: docker.io
-        enableBuildKit: true
+        dockerfile: Dockerfile.ci
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
